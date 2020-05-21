@@ -59,10 +59,10 @@
                                 <div class="inner"  v-show="data.detailed_answer" v-html="data.detailed_answer">
                                 </div>
                             </div>
-                            <div class="btnbox">
-                                <span class="nextBtn">上一题</span>
-                                <span class="nextBtn">下一题</span>
-                            </div>
+<!--                            <div class="btnbox">-->
+<!--                                <span class="nextBtn">上一题</span>-->
+<!--                                <span class="nextBtn">下一题</span>-->
+<!--                            </div>-->
                         </div>
                     </div>
                 </div>

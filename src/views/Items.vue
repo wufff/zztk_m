@@ -106,6 +106,7 @@ export default {
   created(){
     treeData(3).then((data)=>{
         data.unshift({search_node:"",name:"全部"});
+        console.log(data);
         this.tree = data;
     });
     this.renderItems(1,true);

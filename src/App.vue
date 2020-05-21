@@ -144,8 +144,8 @@ h3{
        right:0;
        top:0;
        z-index: 100;
-       background-color: rgba(0,0,0,0.5);   
-       padding-bottom: 50px;  
+       background-color: rgba(0,0,0,0.5);
+       padding-bottom: 50px;
        .downcontent {
           background-color: #fff;
           height: 140px;
@@ -277,23 +277,7 @@ h3{
          .type{ 
             margin-right: 20px;
           }
-        .addItemBt{
-           position: absolute;
-           right: 0;
-           bottom: -7px;
-           border:1px solid #919191;
-           border-radius: 2px;
-           padding: 6px  9px;
-        }
-        .addItemBt_y{
-           position: absolute;
-           right: 0;
-           bottom: -7px;
-           background-color: #37aafd;
-           color: #fff;
-           border-radius: 2px;
-           padding: 6px  9px;           
-        }
+
      }
 
    }

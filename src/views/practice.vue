@@ -112,7 +112,9 @@
                 this.swiper.slideTo(index);
             },
             selectTree(obj){
-                this.$router.push({path:"/myTest",query:{id:obj.id,type:"node",name:obj.name}})
+                if(!obj.dom.children){
+                    this.$router.push({path:"/myTest",query:{id:obj.id,type:"node",name:obj.name}})
+                }
             },
             renderItems(type,first){
                 if(first){

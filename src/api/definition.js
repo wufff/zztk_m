@@ -62,8 +62,9 @@ export default {
                     if (load === 1) {
                         loading.style.display = "none";
                     }
+                    console.log(message);
                     return message;
-                    console.log(message)
+
                 }
             }).catch((res) => {
                 console.log(url + "|" + res)

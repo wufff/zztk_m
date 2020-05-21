@@ -5,7 +5,7 @@
           <div class="list"  v-show="visble">
              <div class="scrollwrap">
                 <div  v-for="(item,index) in  treeList">
-                   <div class="treeItem" @click="selectItem(item.name,item.search_node)" :class="{active:item.search_node == current}">
+                   <div class="treeItem" @click="selectItem(item.name,item.search_node,item)" :class="{active:item.search_node == current}">
                     <span class="img-tree">
                       <img src="../assets/tree_open.png" alt="" v-show="!item.open" v-if="item.children" @click.stop="open(index)">
                       <img src="../assets/tree_close.png" alt="" v-show="item.open"  v-if="item.children"  @click.stop="close(index)">
@@ -13,7 +13,9 @@
                     {{item.name}}
                   </div>
                   <div v-for="(item2,index2) in item.children" v-show="item.open"> 
-                      <div class="treeItem2" @click="selectItem(item2.name,item2.search_node)" :class="{active:item2.search_node == current}">
+                      <div class="treeItem2" @click="selectItem(item2.name,item2.search_node,item2)"
+                           :class="[item2.search_node == current ? activeClass : '', item2.children ? '' :'canGo' ]"
+                      >
                         <span class="img-tree">
                           <img src="../assets/tree_open.png" alt="" v-show="!item2.open" v-if="item2.children" @click.stop="open(index,index2)">
                           <img src="../assets/tree_close.png" alt="" v-show="item2.open" v-if="item2.children" @click.stop="close(index,index2)"> 
@@ -21,7 +23,7 @@
                        {{item2.name}}
                       </div> 
                       <div  v-for="(item3,index3) in item2.children" v-show="item2.open"> 
-                          <div class="treeItem3" @click="selectItem(item3.name,item3.search_node)" :class="{active:item3.search_node == current}">{{item3.name}}</div>
+                          <div class="treeItem3 canGo" @click="selectItem(item3.name,item3.search_node,item3)" :class="{active:item3.search_node == current}">{{item3.name}}</div>
                       </div>
                   </div>                 
                 </div>
@@ -53,7 +55,8 @@ export default {
   },  
   data() {
     return {
-
+        activeClass: 'active',
+        canGoClass: 'canGo'
     }
   },
   methods:{
@@ -71,8 +74,8 @@ export default {
           this.treeList[index].open = false;
        }        
      },
-     selectItem(name,id){
-        this.$emit('func',{name:name,id:id})
+     selectItem(name,id,dom){
+        this.$emit('func',{name:name,id:id,dom:dom})
      }
   }
 }
@@ -154,8 +157,7 @@ export default {
       height:42px;
       line-height: 42px;
       color:#474747;
-      background: url("../assets/arrow_right.png") no-repeat center right;
-      background-size:6px  10px;
+
       overflow: hidden;
       text-overflow:ellipsis;
       white-space: nowrap;
@@ -164,9 +166,13 @@ export default {
       }
   }
   .treeItem2 {
-      padding-left: 30px;
+      padding-left: 20px;
   }
   .treeItem3 {
-      padding-left: 80px;
+      padding-left: 60px;
   }
+    .canGo{
+        background: url("../assets/arrow_right.png") no-repeat center right;
+        background-size:6px  10px;
+    }
 </style>

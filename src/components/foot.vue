@@ -19,83 +19,25 @@
      </ul>
 </template>
 <script>
-
-import  { cartNum }  from  '../api'
-
-function createBalls (){
-    let ret = [];
-    for (let i = 0;i<10;i++){
-       ret.push({show:false})
-    }
-    return ret;
-}
-
 export default {
   name: 'foot',
   data() {
     return {
-      balls:createBalls(),
-      dropBalls:[]       
+
     }
   },
   created(){
-     cartNum().then((data)=>{
-          this.$store.dispatch("set_num",data.qtrunk_count);
-          this.$store.dispatch("set_vip",data.is_vip);
-     })
+
   },
   computed:{
 
   },
   methods:{
-     drop(el){
-       for (let i = 0; i<this.balls.length;i++){
-         const ball = this.balls[i];
-         if(!ball.show){
-            ball.show=true;
-            ball.el = el;
-            this.dropBalls.push(ball);
-            return
-         }
-       }
-     },
-     beforeEnter(el){
-        var html = document.querySelector("html");
-        var  fontSize = html.style.fontSize;
-        var reg = /\d+/;
-        var rem = fontSize.match(reg)[0];
-        const ball = this.dropBalls[this.dropBalls.length -1];
-        const rect = ball.el.getBoundingClientRect();
-        var  AdaX =  5.8 * rem;
-        var AdaY = 0.586667 * rem;
-        const x = rect.left - AdaX;
-        const y = -(window.innerHeight - rect.top - AdaY);
-        el.style.display = '';
-        el.style.transform  = `translate3d(0,${y}px,0)`;
-        const inner = el.getElementsByClassName('inner-hook')[0];
-        inner.style.transform = `translate3d(${x}px,0,0)`;
-     },
-     enter(el,done){
-       this._reflow = document.body.offsetHeight  //触发重绘
-       el.style.transform = `translate3d(0,0,0)`;
-       const inner = el.getElementsByClassName('inner-hook')[0];
-       inner.style.transform = `translate3d(0,0,0)`;
-       el.addEventListener("transitionend",done) //监听结束触发下个钩子
-     },
-     afterEnter(el){
-        const ball = this.dropBalls.shift();
-        this.$store.dispatch("add_num");
-        if(ball){
-           ball.show = false;
-           el.style.display = "none"
-        }
-     }
+
   }
 }
 </script>
-<!-- 4.8rem;
- 0.586667rem; -->
-<!-- Add "scoped" attribute to limit CSS to this component only -->
+
 <style scoped lang="less">
    .foot {
        position: fixed;
@@ -129,22 +71,5 @@ export default {
       }
    }
 
-
-   .ball-container {
-   .ball {
-      position:fixed;
-      left:246px;
-      bottom:32px;
-      z-index:900;
-      transition:all 0.3s cubic-bezier(0.49,-0.29,0.75,0.41);
-      .inner {
-          width:16px;
-          height:16px;
-          border-radius: 50%;
-          background:rgb(0,160,220);
-          transition:all 0.3s linear;
-      }      
-   }
-}
 
 </style>

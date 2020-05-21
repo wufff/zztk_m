@@ -123,9 +123,16 @@ export default {
      this.title = this.$route.query.name;
      if(type == "node"){
          myTestNode(1,{node_id:id}).then((data)=>{
+             if(data == "试卷不存在"){
+                 this.$createToast({
+                     type: 'none',
+                     time: 2500,
+                     txt: "录题中，敬请期待！"
+                 }).show();
+                 return;
+             }
              this.startTime();
              this.cardData = data;
-             console.log(data);
              this.initCart();
              for (let x in data){
                  if(!data.hasOwnProperty(x)) continue;

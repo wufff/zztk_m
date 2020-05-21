@@ -22,61 +22,38 @@
         </div>  
         <div class="scrollwrap">
         <div class="noneData" v-if="datalist.length < 1">{{text.noneText}}</div>
-        <div class="test" v-for="(item,index) in datalist">
-           <div class="top" @click="showDtail(item.master_code_crc32)">
-              <div class="title"> 
-                   <span class="sort">{{item.number}}</span>
-                   <div v-html="item.context"></div>
-              </div>
-             <!--  <div class="fj">
-                  <video src="http://images.dev.dodoedu.com/resource/4aaf30161bcff084.mp4" 
-                      width="100%" 
-                      height="180" 
-                      controls>
-                  </video>
-              </div> -->
-              <ul class="aswerbox" v-if="$local.getQ_Zh(item.qtp_code) === '单选题' || $local.getQ_Zh(item.qtp_code) === '多选题'">
-                 <li v-for="(item2,index2) in item.option">
-                    <span>{{$local.ABC_Zh(index2)}}.</span>
-                    <span>{{item2}}</span>
-                  </li>                               
-              </ul>
-              <ul class="aswerbox" v-if="$local.getQ_Zh(item.qtp_code) === '判断题'">
-                 <li>
-                    <span>对</span>
-                 </li>
-                  <li>
-                    <span>错</span>
-                 </li>                                       
-              </ul>   
+            <div class="scrollwrap">
+                <div v-show="datalist.length < 1" class="noneData" v-html="text.noneText"></div>
+                <div class="test" v-for="(item,index) in datalist">
+                    <div class="top" @click="showDtail(item.master_code_crc32)">
+                        <div class="num">{{index+1}}.</div>
+                        <div class="title" v-html="item.context"></div>
+                        <!--  <div class="fj">
+                             <video src="http://images.dev.dodoedu.com/resource/4aaf30161bcff084.mp4"
+                                 width="100%"
+                                 height="180"
+                                 controls>
+                             </video>
+                         </div> -->
+                        <ul class="aswerbox" style="margin-bottom: 0"
+                            v-if="$local.getQ_Zh(item.qtp_code) == '单选题' || $local.getQ_Zh(item.qtp_code) == '多选题'">
+                            <li v-for="(item2,index2) in item.option">
+                                <div class="item-head">{{$local.ABC_Zh(index2)}}.</div>
+                                <div class="item-content" v-html="item2"/>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--                            <div class="bottom">-->
+                    <!--                                <span class="type">{{$local.getQ_Zh(item.qtp_code)}}</span>-->
+                    <!--                                <span>使用 {{item["usage_count"]}} 次</span>-->
+                    <!--                            </div>-->
+                </div>
             </div>
-            <div class="bottom">
-                <span class="type">{{$local.getQ_Zh(item.qtp_code)}}</span>
-                <span>使用 {{item["usage_count"]}} 次</span>
-                <span class="addItemBt" v-on:click="addNum_num({qtp_code:item.qtp_code,master_code:item.master_code,index:index},$event)" v-show="item.is_add_qtrunk === 1">
-                  <span class="img add-img">
-                    <img src="../assets/add.png" alt="">
-                  </span> 
-                  试题篮
-                </span>
-                <span class="addItemBt_y" v-show="item.is_add_qtrunk === 0" v-on:click="deletItem({qtp_code:item.qtp_code,master_code:item.master_code,index:index})">
-                    <span class="img add-img_y">
-                      <img src="../assets/yes.png" alt="">
-                    </span> 
-                  已添加
-                </span>             
-            </div>            
         </div>
-        </div>   
          </cube-scroll>             
       </div>
      
    </div>
-       
-       <router-link class="cart_rk" to="/cart" tag="div">
-              <img src="../assets/cart_rk.png" alt="">
-              <span class="num_num">{{num_num}}</span>
-      </router-link>
     <itemDtail ref="itemDtail" :data="itemOne"/>
   </div>
 </template>

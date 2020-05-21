@@ -2,31 +2,26 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Items from '../views/Items.vue'
-import tree from '../views/tree.vue'
-import cart from '../views/cart.vue'
+
 import allpaper from '../views/allpaper.vue'
 import paperDtail from '../views/paperDtail.vue'
 import myTest from '../views/myTest.vue'
 import result from '../views/result.vue'
 import analysis from '../views/analysis.vue'
 import my from '../views/my.vue'
-import history_zj  from "../views/history_zj"
-import history_xz  from "../views/history_xz"
+
+
 import history_ct  from "../views/history_ct"
-import buy from "../views/buy"
-import buyhistory from "../views/buyhistory"
-import member from "../views/member"
+
+
+
 import feedback from "../views/feedback"
 import login from "../views/login"
 import congfig from "../views/congfig"
 import login_ma from "../views/login_ma"
 import find from "../views/find"
-import myDown from "../views/myDown"
-import myDown_doc from "../views/myDown_doc"
 import find_config from '../views/find_config'
 import practice from '../views/practice'
-import special from '../views/special'
-import real from '../views/real'
 import swiper from '../views/swiper'
 
 Vue.use(VueRouter);
@@ -82,36 +77,13 @@ const routes = [
     name: 'my',
     component: my
   }, 
-  {
-    path: '/my/history_zj',
-    name: 'history_zj',
-    component: history_zj
-  },
-  {
-    path: '/my/history_xz',
-    name: 'history_xz',
-    component: history_xz
-  },
+
   {
     path: '/my/history_ct',
     name: 'history_ct',
     component: history_ct
   },   
-  {
-    path: '/buy',
-    name: 'buy',
-    component: buy
-  },   
-  {
-    path: '/buyhistory',
-    name: 'buyhistory',
-    component: buyhistory
-  },
- { 
-    path: '/member',
-    name: 'member',
-    component: member
-  },                   
+
   {
     path: '/allpaper',
     name: 'allpaper',

@@ -79,19 +79,8 @@ export default {
     }
   },
   created() {
-    var is_order = this.$route.query.is_order ? this.$route.query.is_order : "";
-    var obj = {
-       is_order:is_order
-    }
-    MY(1,obj).then((data) => {
-      // console.log(data);
+    MY(1,{}).then((data) => {
       this.name = data.user_name;
-      var is = data.is_vip == 1 ? true : false;
-      this.is_vip = is;
-      var user = {
-        is_vip: is
-      }
-      this.$local.save("user", user);
       this.inText();
     })
   },

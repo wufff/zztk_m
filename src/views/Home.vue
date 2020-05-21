@@ -14,7 +14,7 @@
                 </div>
                <div class="recommend">
                  <h3>
-                  精选试卷
+                   真题试卷
 <!--                    <router-link to="/allpaper" tag="span" class="more">更多</router-link>-->
                  </h3>
                  <ul class="list">
