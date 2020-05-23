@@ -184,6 +184,7 @@
             width: 40px;
             margin: 0 10px;
              border-bottom: 2px solid #fff;
+             font-size: 17px;
             &.active{
                 border-bottom: 2px solid #37aafd;
                 color:#37aafd;

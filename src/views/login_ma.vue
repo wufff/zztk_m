@@ -112,7 +112,7 @@ export default {
                // console.log(data);
               if (typeof data == 'object') {
                 var token = data.sid;
-                var hash = this.$route.query.redr ? this.$route.query.redr : "/"; 
+                var hash = this.$route.query.redr ? this.$route.query.redr : "/";
                 this.$local.save("token", token);
                 this.$router.push({path:hash});
               } else {

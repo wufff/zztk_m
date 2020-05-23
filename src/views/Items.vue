@@ -141,6 +141,9 @@ export default {
          this.tree_show =false;
          this.renderItems(1,true)
     },
+      goTest(id,name){
+          this.$router.push({path:"/myTest",query:{id:id,type:"real",name:name}})
+      },
     renderItems(type,first){
          if(first){
              this.page.current = 1;

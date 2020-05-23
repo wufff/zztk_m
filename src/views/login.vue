@@ -115,6 +115,7 @@ export default {
      },
      login(){
        var hash = this.$route.query.redr;
+
        if(this.usename != "" && this.code != ""){
           var obj = {
              user_mobile:this.usename,
@@ -130,7 +131,7 @@ export default {
                        this.$router.push("/")
                     }else{
                       setTimeout(()=>{
-                          this.$router.push({path:hash});
+                          // this.$router.push({path:hash});
                       },400)
                     }
               }else if (is_pwd == 0 ){
@@ -142,9 +143,9 @@ export default {
                         type: 'none',
                         time: 800,
                         txt: data
-                 }).show();   
-                 this.code = "";                 
-              }        
+                 }).show();
+                 this.code = "";
+              }
           })
        }
      },

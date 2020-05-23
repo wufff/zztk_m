@@ -23,7 +23,7 @@ let local = {
       if(str === "QTP_OBJ_004") {return "多选题"}
       if(str === "QTP_OBJ_006") {return "判断题"}
       if(str === "QTP_OBJ_007") {return "填空题"}
-      if(str === "QTP_SUB_006") {return "简答题"}
+      if(str === "QTP_SUB_006") {return "分析题"}
   },
 
 

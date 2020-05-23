@@ -26,7 +26,7 @@
                           </div>
                           <span class="time">{{item.paper_creation_offset}}</span>
                       </router-link>      -->   
-                      <li  v-for="(item,index) in paper_list" :key="index" @click="goDtial(item.id)">
+                      <li  v-for="(item,index) in paper_list" :key="index" @click="goDtial(item.paper_code_crc32)">
                           <h4>{{item.paper_title}}</h4>
                           <div class="info">
                               <span>{{item.paper_q_count}}道题</span>

@@ -1,20 +1,15 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+Vue.use(VueRouter);
 import Home from '../views/Home.vue'
 import Items from '../views/Items.vue'
-
 import allpaper from '../views/allpaper.vue'
 import paperDtail from '../views/paperDtail.vue'
 import myTest from '../views/myTest.vue'
 import result from '../views/result.vue'
 import analysis from '../views/analysis.vue'
 import my from '../views/my.vue'
-
-
 import history_ct  from "../views/history_ct"
-
-
-
 import feedback from "../views/feedback"
 import login from "../views/login"
 import congfig from "../views/congfig"
@@ -24,7 +19,12 @@ import find_config from '../views/find_config'
 import practice from '../views/practice'
 import swiper from '../views/swiper'
 
-Vue.use(VueRouter);
+
+const routerPush = VueRouter.prototype.push
+VueRouter.prototype.push = function push(location) {
+  return routerPush.call(this, location).catch(error=> error)
+};
+
 const routes = [
   {
     path: '/',

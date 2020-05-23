@@ -199,6 +199,10 @@ import { result , resultCrad } from '@/api'
       }
       .title {
          margin-bottom: 15px;
+          width: 310px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
       }
       .info {
          color:#919191;

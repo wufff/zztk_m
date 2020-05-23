@@ -103,6 +103,7 @@ export default {
        second:0,
        cardData:{},
         title:"",
+        paper_code_crc32:"",
        cardshow:false,
        pdoption:["对","错"],
        swiperOption:{
@@ -132,18 +133,24 @@ export default {
                  return;
              }
              this.startTime();
-             this.cardData = data;
+             this.paper_code_crc32 = data.paper_code_crc32;
+             const itemList = data.qtrunk_list;
+             this.cardData = itemList;
              this.initCart();
-             for (let x in data){
-                 if(!data.hasOwnProperty(x)) continue;
-                 this.datalist.push(...data[x]);
+             for (let x in itemList){
+                 if(!itemList.hasOwnProperty(x)) continue;
+                 console.log(itemList[x]);
+                 this.datalist.push(...itemList[x]);
              }
+
+
          })
      }else {
          myTest(1,{paper_code_crc32:id}).then((data)=>{
              this.startTime();
              this.cardData = data;
-             console.log(data);
+             // console.log(data);
+             this.paper_code_crc32 = this.$route.query.id;
              this.initCart();
              for (let x in data){
                  if(!data.hasOwnProperty(x)) continue;
@@ -264,11 +271,11 @@ export default {
                 });
                 var obj = {
                     answer_time:this.second,
-                    paper_code_crc32:this.$route.query.id,
+                    paper_code_crc32:this.paper_code_crc32,
                     answer_data:aswdata
                 }
                 subimtTest(1,obj).then(res=>{
-                   this.$router.replace({path:"/result",query:{id:this.$route.query.id}});
+                   this.$router.replace({path:"/result",query:{id:this.paper_code_crc32}});
                 })
             }
          }).show();
@@ -404,12 +411,10 @@ export default {
 
   .swiper-container {
       width: 100%;
-      height: 100%;
       .inner {
          margin-top: 10px;
          background: #fff;
          width: 100%;
-         height: 100%;         
       }
   }
 
@@ -425,6 +430,7 @@ export default {
       padding: 9px 7px;
       font-size: 16px;
       color:#474747;
+      z-index: 99;
       .img-time {
           width: 22px;
           height: 23px;
@@ -446,6 +452,7 @@ export default {
     padding: 16px;
     margin-top: 10px;
     background-color: #fff;
+     margin-bottom: 51px;
    .add-img { 
         width: 11px;
         height: 11px;

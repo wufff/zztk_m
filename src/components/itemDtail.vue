@@ -94,7 +94,7 @@ export default {
      // console.log(this.$local.fetch("user"));
   },
   computed: {
-    
+
   },  
   methods:{
      back(){
@@ -132,7 +132,7 @@ export default {
       right: 0;
       top:0;
       z-index:999;
-      padding-top: 52px;
+      padding-top: 50px;
   }
 
   .wrap {
