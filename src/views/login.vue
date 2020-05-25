@@ -109,13 +109,12 @@ export default {
           }
           getCode(3,obj).then((data)=>{
               this.show = true;
-              this.timeStart();                
-          })    
+              this.timeStart();
+          })
        }
      },
      login(){
        var hash = this.$route.query.redr;
-
        if(this.usename != "" && this.code != ""){
           var obj = {
              user_mobile:this.usename,
@@ -131,13 +130,13 @@ export default {
                        this.$router.push("/")
                     }else{
                       setTimeout(()=>{
-                          // this.$router.push({path:hash});
+                          this.goback();
                       },400)
                     }
               }else if (is_pwd == 0 ){
                   var token = data.sid;
                   this.$local.save("token",token);
-                  this.$router.push({path:'/congfig',query:{redr:hash}});
+                  this.$router.push({path:'/congfig'});
               }else {
                  this.$createToast({
                         type: 'none',
@@ -150,12 +149,23 @@ export default {
        }
      },
      goToyz(){
-        var id = this.$route.query.redr;
-        this.$router.push({path:"/login_ma",query:{redr:id}});
-     }
+        this.$router.push({path:"/login_ma"});
+     },
+      goback(){
+          let url = window.location.href;
+          let mainUrl = url.split("#")[0];
+          var hash =  window.sessionStorage.getItem("backUrl");
+          window.sessionStorage.setItem("backUrl","");
+          if(!hash){
+              window.location.href = mainUrl;
+          }else{
+              window.location.href = mainUrl + "#" + hash;
+          }
+          loading.style.display = "none";
+      }
   },
   components: {
-   
+
   }
 }
 </script>

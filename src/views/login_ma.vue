@@ -79,8 +79,7 @@ export default {
        window.history.go(-1);
      },
      goToyz(){
-        var id = this.$route.query.redr;
-
+         this.$router.push({path:"/login"});
      },
     handleBug() {
         // console.log("handleBug")
@@ -112,9 +111,8 @@ export default {
                // console.log(data);
               if (typeof data == 'object') {
                 var token = data.sid;
-                var hash = this.$route.query.redr ? this.$route.query.redr : "/";
                 this.$local.save("token", token);
-                this.$router.push({path:hash});
+                this.goback();
               } else {
                 this.$createToast({
                   type: 'none',
@@ -128,7 +126,20 @@ export default {
      goForgaet(){
         var id = this.$route.query.redr;
         this.$router.push({path:"/find",query:{redr:id}});         
-     }
+     },
+      goback(){
+          let url = window.location.href;
+          let mainUrl = url.split("#")[0];
+          var hash =  window.sessionStorage.getItem("backUrl");
+          window.sessionStorage.setItem("backUrl","");
+          if(!hash){
+              window.location.href = mainUrl;
+          }else{
+              window.location.href = mainUrl + "#" + hash;
+          }
+          loading.style.display = "none";
+      }
+
   },
   components: {
      foot,

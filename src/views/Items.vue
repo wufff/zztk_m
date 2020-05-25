@@ -26,8 +26,8 @@
                     </div>
                     <div class="scrollwrap">
                         <div v-show="datalist.length < 1" class="noneData" v-html="text.noneText"></div>
-                        <div class="test" v-for="(item,index) in datalist">
-                            <div class="top" @click="showDtail(item.master_code_crc32)">
+                        <div class="test" v-for="(item,index) in datalist"  @click.stop="showDtail(item.master_code_crc32)">
+                            <div class="top">
                                 <div class="num">{{index+1}}.</div>
                                 <div class="title" v-html="item.context"></div>
                                 <!--  <div class="fj">
@@ -45,10 +45,6 @@
                                     </li>
                                 </ul>
                             </div>
-<!--                            <div class="bottom">-->
-<!--                                <span class="type">{{$local.getQ_Zh(item.qtp_code)}}</span>-->
-<!--                                <span>使用 {{item["usage_count"]}} 次</span>-->
-<!--                            </div>-->
                         </div>
                     </div>
                 </cube-scroll>
@@ -77,7 +73,12 @@ export default {
             },
             options: {
                 click: true,
-                bounce: false,
+                bounce:  {
+                    top: false,
+                    bottom: false,
+                    left: false,
+                    right: false
+                },
                 pullUpLoad: {
                     threshold: 100,
                     txt: {

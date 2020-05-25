@@ -71,17 +71,9 @@ export default {
                      txt: data.message
                   }).show();                    
               }else{
-
                   var token = data.sid;
-                  var hash = this.$route.query.redr;
-                  this.$local.save("token",token);  
-                  this.$router.push({path:hash});
-                    if(hash) {
-                       this.$router.push("/")
-                    }else{
-                        this.$router.push({path:hash});
-                    }                      
-
+                  this.$local.save("token",token);
+                  this.goback()
               }
            })  
         }else if( this.passwrod.length < 6){
@@ -96,8 +88,19 @@ export default {
         console.log("handleBug")
         let scrollHeight = document.documentElement.scrollTop || document.body.scrollTop || 0
         window.scrollTo(0, Math.max(scrollHeight - 1, 0))
-    }          
-
+    },
+      goback(){
+          let url = window.location.href;
+          let mainUrl = url.split("#")[0];
+          var hash =  window.sessionStorage.getItem("backUrl");
+          window.sessionStorage.setItem("backUrl","");
+          if(!hash){
+              window.location.href = mainUrl;
+          }else{
+              window.location.href = mainUrl + "#" + hash;
+          }
+          loading.style.display = "none";
+      }
   },
   components: {
      

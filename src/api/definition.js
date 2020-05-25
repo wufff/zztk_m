@@ -106,7 +106,8 @@ function goLogin() {
     let url = window.location.href;
     let mainUrl = url.split("#")[0];
     let hash = url.split("#")[1];
-    window.location.href = mainUrl + "#/login?redr=" + hash;
+    window.sessionStorage.setItem("backUrl",hash);
+    window.location.href = mainUrl + "#/login";
     loading.style.display = "none";
 }
 
